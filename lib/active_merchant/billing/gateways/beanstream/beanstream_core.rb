@@ -211,6 +211,7 @@ module ActiveMerchant #:nodoc:
         post[:trnRecurring]       = '1'
         post[:rbBillingPeriod]    = PERIOD[recurring_options[:interval][:unit]]
         post[:rbBillingIncrement] = recurring_options[:interval][:length]
+        post[:rbCharge]           = recurring_options[:first_charge] if recurring_options[:first_charge] 
         post[:rbFirstBilling]     = recurring_options[:duration][:first_start_date].strftime("%m%d%Y")
         post[:rbSecondBilling]    = recurring_options[:duration][:second_start_date].strftime("%m%d%Y") if post[:rbSecondBilling]
         post[:rbExpiry]           = (recurring_options[:duration][:start_date] >> recurring_options[:duration][:occurrences]).strftime("%m%d%Y") if recurring_options[:rbExpiry]
