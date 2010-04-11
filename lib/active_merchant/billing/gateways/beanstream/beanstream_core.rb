@@ -212,9 +212,9 @@ module ActiveMerchant #:nodoc:
         post[:rbBillingPeriod]    = PERIOD[recurring_options[:interval][:unit]]
         post[:rbBillingIncrement] = recurring_options[:interval][:length]
         post[:rbCharge]           = recurring_options[:first_charge] if recurring_options[:first_charge] 
-        post[:rbFirstBilling]     = recurring_options[:duration][:first_start_date].strftime("%m%d%Y")
-        post[:rbSecondBilling]    = recurring_options[:duration][:second_start_date].strftime("%m%d%Y") if post[:rbSecondBilling]
-        post[:rbExpiry]           = (recurring_options[:duration][:start_date] >> recurring_options[:duration][:occurrences]).strftime("%m%d%Y") if recurring_options[:rbExpiry]
+        post[:rbFirstBilling]     = recurring_options[:duration][:first_start_date].strftime("%m%d%Y") if recurring_options[:duration][:first_start_date]
+        post[:rbSecondBilling]    = recurring_options[:duration][:second_start_date].strftime("%m%d%Y") if recurring_options[:duration][:second_start_date]
+        post[:rbExpiry]           = (recurring_options[:duration][:start_date] >> recurring_options[:duration][:occurrences]).strftime("%m%d%Y") if recurring_options[:duration][:occurrences]
         post[:rbNeverExpires]     = recurring_options[:never_expires] if recurring_options[:never_expires]
         post[:rbEndMonth]         = recurring_options[:end_of_month] if recurring_options[:end_of_month]
         post[:rbApplyTax1]        = recurring_options[:tax1] if recurring_options[:tax1]
